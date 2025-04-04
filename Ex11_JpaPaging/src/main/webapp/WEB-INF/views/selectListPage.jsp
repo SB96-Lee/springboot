@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>JPA Paging - Name Like Paging</h1>
+	
+	총 게시글의 갯수 : ${totalElements}<br><br>
+	총 페이지 수 : ${totalPages }<br><br>
+	한 페이지당 게시글 수 : ${size }<br><br>
+	현재 페이지 : ${pageNumber }<br><br>
+	현재 페이지의 글 수 : ${numberofElements }<br><br>
+	<hr>
+	
+	<c:forEach var="m" items="${members }">
+		아이디 : ${m.id }<br>
+		이름 : ${m.name }<br>
+		이메일 : ${m.email }<br>
+		<hr>
+	</c:forEach>
+</body>
+</html>

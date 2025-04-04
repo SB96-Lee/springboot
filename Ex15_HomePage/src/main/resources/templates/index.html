@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/css/index.css" rel="stylesheet"> <!-- 처음 / 뜻은 root(static) -->
+</head>
+<body>
+	<!--   ~(물결표)의 뜻은 나를 기준으로 {fragments폴더에 header.html파일에서 fragment-menu 세팅을 재사용} -->
+	<div th:replace="~{fragments/header.html :: fragment-menu}"></div>
+	<div class="imgwrap"> 
+		<img src="/img/img2.jpg">
+	</div>
+</body>
+</html>

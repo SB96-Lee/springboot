@@ -83,6 +83,11 @@ public class MemberController {
 	public String update(@RequestParam("id")Long id, 
 						 @RequestParam("username") String username
 						 , Model model) {
+		// update시 primary key를 검색하여 키가 있으면 달느 필드 모두 업데이트
+		// update시 기존 내용을 업데이트 하지 않는다고 안넣으면 null이 들어감
+		// => select를 하며 그 결과에 update할 내용만 넣으면 됨
+		
+		// member.setCreateDate(LocalDate.now());
 		
 		Member m = Member.builder()
 				  .id(id)
