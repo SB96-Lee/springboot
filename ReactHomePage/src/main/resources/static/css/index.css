@@ -1,0 +1,33 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+.nav-area {
+    width: 100%;
+    background-color: darkslategray;
+    text-align: center;
+    color: white;
+    height: 40px;
+}
+
+.nav-area td {
+	width: 25%
+}
+.nav-area td:hover {
+	background-color: rgb(83, 138, 138);
+	cursor: pointer;
+}
+
+.imgwrap { 
+	text-align: center;
+	margin-top: 10px;
+}
+
+.imgwrap img{
+	width: 400px;
+}
+
+.outer {
+	width: 700px;
+	margin: 0 auto;
+}

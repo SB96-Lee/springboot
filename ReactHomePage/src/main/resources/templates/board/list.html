@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/css/index.css" rel="stylesheet">
+</head>
+<body>	
+	<div th:replace="~{/fragments/header.html :: fragment-menu}"></div>
+	<h2 align="center">게 시 판</h2>
+	
+	<div class="outer">
+		<div th:text="|총 게시글 수 : ${boardPage.totalElements}"></div>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>글번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="board, state: ${boardPage}">
+					<td>[[${board.bno}]]</td>
+					<td><a th:href="@{detailForm(bno=${board.bno})}">[[${board.title}]]</a></td>
+					<td>[[${board.writer}]]</td>
+					<td>[[${board.count}]]</td>
+					<td th:text="*{#temporals.format(board.createDate, 'yyyy-MM-dd')}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- 페이지 처리
+		현재페이지 : boardPage.number
+		총페이지수 : boardPage.totalPages
+		${#numbers.sequence(boardPage.number, boardPage.totalPages - 1)}
+		-->
+		
+		<div align="center">
+			<a th:href="@{/list(nowPage=0)}">[처음]</a>
+			
+			<!-- 이전 페이지 -->
+			<a th:if="${boardPage.number > 0}" th:href="@{/list(nowPage=${boardPage.number - 1})}">[이전]</a>
+			
+			<!-- 현재 페이지 표시 -->
+			<span th:text="|${boardPage.number + 1} / ${boardPage.totalPages}|"></span>
+			&emsp; OR &emsp;
+		  	<span th:each="pageNumber : ${#numbers.sequence(boardPage.number, boardPage.totalPages-1)}">
+        		<strong th:if="${pageNumber == boardPage.number}" th:text="|[${pageNumber+1}]|"></strong>
+        		<a th:unless="${pageNumber == boardPage.number}" th:href="@{list(nowPage=${pageNumber})}" th:text="|[${pageNumber+1}]|"></a>
+        	</span>
+			
+			<!-- 다음 페이지 -->
+			<a th:if="${boardPage.number + 1 < boardPage.totalPages}" th:href="@{/list(nowPage=${boardPage.number + 1})}">[다음]</a>
+			
+			<!-- 마지막 페이지 -->
+			<a th:href="@{/list(nowPage=${boardPage.totalPages - 1})}">[마지막]</a>
+		</div>
+		<!-- 글쓰기 -->
+		<div th:if="${loginUser != null}" align="right">
+			<a href="insertForm">새로운 글 작성</a>
+		</div>
+	</div>
+</body>
+</html>
